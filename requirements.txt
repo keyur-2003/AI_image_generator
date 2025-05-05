@@ -10,4 +10,4 @@ xformers
 langchain
 langsmith
 dotenv
-openai
+openai == 1.76.2
