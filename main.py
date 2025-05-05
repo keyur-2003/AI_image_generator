@@ -221,8 +221,6 @@
  
  
  
- 
-# this is with styles using dropdown
 from langsmith.wrappers import wrap_openai
 from langsmith import traceable
 import streamlit as st
@@ -235,22 +233,11 @@ import os
 from diffusers import StableDiffusionControlNetPipeline, ControlNetModel, UniPCMultistepScheduler
 # from utils import image_to_canny
 from dotenv import load_dotenv
- 
-#st.set_page_config(page_title="AI Art Generator", layout="centered")
-load_dotenv()
- 
-# Set your OpenAI API key
-openai.api_key = st.secrets['OPENAI_API_KEY']
- 
-st.title("!Hello , Welcome to Image Generator AI")
-mode=st.selectbox('Select Mode',['','text to image','img to img'])
- 
-# utils.py
-
 import cv2
 import numpy as np
 from PIL import Image
-
+ 
+#canny function for model
 def image_to_canny(pil_img):
     image = np.array(pil_img)
     image = cv2.resize(image, (512, 512))
@@ -258,8 +245,18 @@ def image_to_canny(pil_img):
     edges = cv2.Canny(gray, 100, 200)
     canny_image = cv2.cvtColor(edges, cv2.COLOR_GRAY2RGB)
     return Image.fromarray(canny_image)
-
-
+ 
+#st.set_page_config(page_title="AI Art Generator", layout="centered")
+load_dotenv()
+st.image(image="aibg.jpeg")
+st.title("Welcome to image converter")
+# Set your OpenAI API key
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+ 
+openai.api_key = st.secrets['OPENAI_API_KEY']
+ 
+mode=st.selectbox('What you want',['Select Mode','text to image','image to image'])
+ 
 if mode == 'text to image':
         # Function to generate image
     def generate_image(prompt: str, style: str, image_size: str):
@@ -273,7 +270,7 @@ if mode == 'text to image':
         return response.data[0].url
  
     # Streamlit UI
-    st.title(" Text to Image Generator with Style")
+    st.title(" Text to Image Generator")
  
     prompt = st.text_input("Enter your image description:")
     style = st.selectbox(
@@ -292,10 +289,10 @@ if mode == 'text to image':
             st.error(f"Error: {e}")
             
         
-elif mode == 'img to img':
+elif mode == 'image to image':
     #st.set_page_config(page_title="Image to Anime using ControlNet", layout="centered")
  
-    st.title(" Real to Anime Image Generator with ControlNet")
+    st.title("Image to image generator")
     st.markdown("Upload an image and describe the style you want (e.g., 'anime cat with big eyes').")
  
     # Upload image and input prompt
@@ -329,7 +326,7 @@ elif mode == 'img to img':
             pipe = pipe.to("cpu")
  
             # Generate the image
-            result = pipe(prompt, image=canny_image, num_inference_steps=10)
+            result = pipe(prompt, image=canny_image, num_inference_steps=5)
             generated_image = result.images[0]
  
             # Save and display output
