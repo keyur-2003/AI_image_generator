@@ -10,3 +10,4 @@ xformers
 langchain
 langsmith
 dotenv
+openai
