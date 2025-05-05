@@ -11,3 +11,4 @@ langchain
 langsmith
 dotenv
 openai == 1.76.2
+cv2
