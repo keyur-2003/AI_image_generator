@@ -5,10 +5,9 @@ diffusers
 transformers
 accelerate
 controlnet_aux
-opencv-python
 Pillow
 xformers
 langsmith
 dotenv
- 
+opencv-python-headless
  
