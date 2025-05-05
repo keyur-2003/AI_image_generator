@@ -1,3 +1,4 @@
+openai ==1.76.2
 streamlit
 torch
 diffusers
@@ -7,7 +8,7 @@ controlnet_aux
 opencv-python
 Pillow
 xformers
-langchain
 langsmith
 dotenv
-openai == 1.76.2
+ 
+ 
