@@ -1,4 +1,4 @@
-openai == 1.76.2
+openai ==1.76.2
 streamlit
 torch
 diffusers
