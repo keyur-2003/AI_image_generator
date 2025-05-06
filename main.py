@@ -75,7 +75,7 @@ if mode == 'text to image':
         "and a playful color palette. Clear character design, smooth shading, and a clean, flat aesthetic suitable "
         "for animated series or comic books."
     ),
- 
+        
     "anime": (
         "A high-quality anime-style artwork of {}, with dynamic posing, dramatic lighting, and expressive facial features. "
         "Includes a detailed background in the style of modern anime, vibrant colors, cel-shading, and subtle glow effects. "
